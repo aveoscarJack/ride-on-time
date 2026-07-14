@@ -83,13 +83,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "The single place to check today's campus shuttle schedule, delays, and announcements.",
       },
-      { property: "og:title", content: "CampusShuttle — Live shuttle schedule" },
+      { property: "og:title", content: "CampusShuttle — Live shuttle schedule & updates" },
       {
         property: "og:description",
-        content: "Today's shuttle times, delays, and announcements in one place.",
+        content: "The single place to check today's campus shuttle schedule, delays, and announcements.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "CampusShuttle — Live shuttle schedule & updates" },
+      { name: "twitter:description", content: "The single place to check today's campus shuttle schedule, delays, and announcements." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/b7fb60ba-b7fb-4826-946d-52d8c8288ce5/id-preview-7d811176--76d7bb83-adc5-4f80-ab90-a049fc3866ab.lovable.app-1784038247542.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/b7fb60ba-b7fb-4826-946d-52d8c8288ce5/id-preview-7d811176--76d7bb83-adc5-4f80-ab90-a049fc3866ab.lovable.app-1784038247542.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
