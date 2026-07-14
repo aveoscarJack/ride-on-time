@@ -120,7 +120,13 @@ function TripsAdmin() {
   });
 
   const update = useMutation({
-    mutationFn: async ({ id, patch }: { id: string; patch: Record<string, unknown> }) => {
+    mutationFn: async ({
+      id,
+      patch,
+    }: {
+      id: string;
+      patch: { status?: "on_time" | "delayed" | "cancelled"; delay_minutes?: number };
+    }) => {
       const { error } = await supabase.from("shuttle_trips").update(patch).eq("id", id);
       if (error) throw error;
     },
