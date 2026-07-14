@@ -168,7 +168,7 @@ function TripsAdmin() {
               </div>
               <Select
                 value={t.status}
-                onValueChange={(v) => update.mutate({ id: t.id, patch: { status: v } })}
+                onValueChange={(v) => update.mutate({ id: t.id, patch: { status: v as "on_time" | "delayed" | "cancelled" } })}
               >
                 <SelectTrigger className="w-36">
                   <SelectValue>{statusLabel(t.status, t.delay_minutes)}</SelectValue>
