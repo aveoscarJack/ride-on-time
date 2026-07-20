@@ -18,7 +18,9 @@ export function SiteHeader() {
         <nav className="hidden items-center gap-1 md:flex">
           <NavLink to="/">Today</NavLink>
           <NavLink to="/schedule">Schedule</NavLink>
+          <NavLink to="/map">Live Map</NavLink>
           <NavLink to="/announcements">Announcements</NavLink>
+          {user && <NavLink to="/drive">Drive</NavLink>}
           {isAdmin && <NavLink to="/admin">Admin</NavLink>}
         </nav>
         <div className="flex items-center gap-2">
@@ -41,10 +43,12 @@ export function SiteHeader() {
           )}
         </div>
       </div>
-      <nav className="flex items-center gap-1 border-t px-4 py-2 md:hidden">
+      <nav className="flex flex-wrap items-center gap-1 border-t px-4 py-2 md:hidden">
         <NavLink to="/">Today</NavLink>
         <NavLink to="/schedule">Schedule</NavLink>
+        <NavLink to="/map">Map</NavLink>
         <NavLink to="/announcements">News</NavLink>
+        {user && <NavLink to="/drive">Drive</NavLink>}
         {isAdmin && <NavLink to="/admin">Admin</NavLink>}
       </nav>
     </header>
