@@ -134,9 +134,28 @@ function DrivePage() {
           </div>
 
           {!sharing ? (
-            <Button className="w-full" size="lg" onClick={startSharing}>
-              <Play className="mr-1.5 h-4 w-4" /> Start sharing location
-            </Button>
+            <div className="space-y-2">
+              <Button className="w-full" size="lg" onClick={startSharing}>
+                <Play className="mr-1.5 h-4 w-4" /> Start sharing location
+              </Button>
+              <Button
+                className="w-full"
+                size="lg"
+                variant="outline"
+                onClick={async () => {
+                  if (!user) return;
+                  setStatus("Going off duty…");
+                  const { error } = await supabase
+                    .from("shuttle_locations")
+                    .delete()
+                    .eq("driver_id", user.id);
+                  setStatus(error ? `Error: ${error.message}` : "Off duty · removed from map");
+                  setLastFix(null);
+                }}
+              >
+                <PowerOff className="mr-1.5 h-4 w-4" /> Go off duty (hide from map)
+              </Button>
+            </div>
           ) : (
             <Button className="w-full" size="lg" variant="destructive" onClick={stopSharing}>
               <Square className="mr-1.5 h-4 w-4" /> Stop sharing
@@ -144,9 +163,10 @@ function DrivePage() {
           )}
 
           <p className="text-xs text-muted-foreground">
-            Your position updates in real time on the public map. Stopping removes your marker
-            immediately.
+            Your position updates in real time on the public map. Stopping or going off duty
+            removes your marker immediately.
           </p>
+
         </div>
       </section>
     </div>
