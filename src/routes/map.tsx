@@ -180,11 +180,24 @@ function MapPage() {
         marker.addListener("click", () => {
           const routeName = tripMap.get(loc.trip_id ?? "") ?? "Shuttle";
           const updated = new Date(loc.updated_at).toLocaleTimeString();
-          infoRef.current.setContent(
-            `<div style="font-family:system-ui;font-size:13px"><strong>${routeName}</strong><br/>Updated ${updated}${loc.speed ? `<br/>${Math.round(loc.speed * 3.6)} km/h` : ""}</div>`,
-          );
+          const container = document.createElement("div");
+          container.style.fontFamily = "system-ui";
+          container.style.fontSize = "13px";
+          const strong = document.createElement("strong");
+          strong.textContent = routeName;
+          container.appendChild(strong);
+          container.appendChild(document.createElement("br"));
+          container.appendChild(document.createTextNode(`Updated ${updated}`));
+          if (loc.speed) {
+            container.appendChild(document.createElement("br"));
+            container.appendChild(
+              document.createTextNode(`${Math.round(loc.speed * 3.6)} km/h`),
+            );
+          }
+          infoRef.current.setContent(container);
           infoRef.current.open({ anchor: marker, map: mapRef.current });
         });
+
         markersRef.current.set(loc.id, marker);
       }
     }
